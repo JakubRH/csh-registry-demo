@@ -55,5 +55,5 @@ push to `main`. The site builds and publishes automatically.
 
 - **Browse** — filterable conformer table with per-row Etherscan links ✓
 - **Compare** — pick any two conformers, read Hamming off a bit diff ✓
-- **Search** — LSH-banding similarity search with a threshold-`T` slider
+- **Search** — similarity search with a threshold-`T` slider, live recall/FP ✓
 - **3D viewer** — 3Dmol.js conformer rendering

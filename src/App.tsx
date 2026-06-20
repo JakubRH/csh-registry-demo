@@ -1,9 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./pages/Home";
-import Stub from "./pages/Stub";
 import Browse from "./pages/Browse";
 import Compare from "./pages/Compare";
+import Search from "./pages/Search";
 
 export default function App() {
   return (
@@ -14,15 +14,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/browse" element={<Browse />} />
           <Route path="/compare" element={<Compare />} />
-          <Route
-            path="/search"
-            element={
-              <Stub
-                title="Similarity search"
-                blurb="Query a conformer and slide the Hamming threshold T to watch LSH banding retrieve near-neighbours — same recall/false-positive trade-off as the paper."
-              />
-            }
-          />
+          <Route path="/search" element={<Search />} />
         </Routes>
       </main>
       <footer className="mx-auto max-w-6xl px-5 py-10 text-[12.5px] text-[var(--color-ink-faint)]">
