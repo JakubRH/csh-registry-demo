@@ -1,0 +1,54 @@
+{
+  "conformersOnChain": 64,
+  "molecules": 3,
+  "indexedEvents": 665,
+  "lastIndexedBlock": 10827638,
+  "contractV2": "0x2081c6b3216Bb21811c179C195cbe9490C9F6572",
+  "contractV1": "0x376E4dB2943Cd63e8d0C6B8278d8fb378F28c9fa",
+  "withinMeanHamming": 21.1,
+  "crossMeanHamming": 31.7,
+  "crossMinHamming": 20,
+  "adversarial": {
+    "nMolecules": 26,
+    "nHashes": 130,
+    "crossPairs": 8125,
+    "crossMean": 32.0,
+    "crossStd": 4.1,
+    "crossMin": 19,
+    "collisionsAt15": 0,
+    "collisionsAt20pct": 0.28
+  },
+  "bestOperatingPoint": {
+    "T": 20,
+    "recall": 0.32,
+    "crossFP": 0.0
+  },
+  "hero": {
+    "same": {
+      "hamming": 1,
+      "a": {
+        "id": "atorvastatin_conf00",
+        "molecule": "atorvastatin",
+        "hash64": "6ddfc38d820da090"
+      },
+      "b": {
+        "id": "atorvastatin_conf03",
+        "molecule": "atorvastatin",
+        "hash64": "69dfc38d820da090"
+      }
+    },
+    "different": {
+      "hamming": 32,
+      "a": {
+        "id": "atorvastatin_conf03",
+        "molecule": "atorvastatin",
+        "hash64": "69dfc38d820da090"
+      },
+      "b": {
+        "id": "tamoxifen_conf07",
+        "molecule": "tamoxifen",
+        "hash64": "1f8811efa81372aa"
+      }
+    }
+  }
+}

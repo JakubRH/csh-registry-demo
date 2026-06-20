@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+/* ── CSH design tokens ──────────────────────────────────────────────
+   Light, instrument-grade. Molecule hues taken verbatim from the paper
+   figures so the site reads as one artifact with the publication.      */
+@theme {
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --color-paper: #f4f6f9;
+  --color-surface: #ffffff;
+  --color-ink: #14171f;
+  --color-ink-soft: #5b6472;
+  --color-ink-faint: #97a0ad;
+  --color-hairline: #e2e6ec;
+
+  /* The single system accent — distinct from all three molecule hues. */
+  --color-csh: #0f766e; /* teal-700 */
+  --color-csh-soft: #d6efec;
+
+  /* Diff signal: bits that differ ignite in this. */
+  --color-diff: #f4502a;
+  --color-diff-soft: #ffe2da;
+
+  /* Molecule identity (matches paper figures 2/3). */
+  --color-tamoxifen: #2e86ab;
+  --color-imatinib: #a23b72;
+  --color-atorvastatin: #f18f01;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--color-csh); color: #fff; }
+
+:focus-visible {
+  outline: 2px solid var(--color-csh);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* tabular figures for all data-bearing numbers */
+.tnum { font-variant-numeric: tabular-nums; }
