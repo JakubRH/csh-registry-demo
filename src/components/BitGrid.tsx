@@ -8,6 +8,8 @@ interface BitGridProps {
   diff?: number[];
   /** cell edge length in px */
   size?: number;
+  /** compact single-row strip (no byte grouping) — for dense lists */
+  flat?: boolean;
   className?: string;
 }
 
@@ -16,15 +18,56 @@ interface BitGridProps {
  * Filled cell = 1, hairline cell = 0. When `diff` is supplied, columns
  * where two hashes disagree ignite in the diff signal color — making
  * "similar conformers differ in few bits" literally visible.
+ *
+ * `flat` renders one continuous 64-cell strip for dense rows.
  */
 export default function BitGrid({
   hash,
   color = "var(--color-ink)",
   diff,
   size = 13,
+  flat = false,
   className = "",
 }: BitGridProps) {
   const bits = hashToBits(hash);
+
+  const cell = (bit: number, idx: number, radius: string) => {
+    const isDiff = diff?.[idx] === 1;
+    const on = bit === 1;
+    return (
+      <span
+        key={idx}
+        style={{
+          width: size,
+          height: size,
+          background: isDiff
+            ? "var(--color-diff)"
+            : on
+              ? color
+              : "transparent",
+          borderColor: isDiff
+            ? "var(--color-diff)"
+            : on
+              ? color
+              : "var(--color-hairline)",
+        }}
+        className={`${radius} border transition-colors duration-300`}
+      />
+    );
+  };
+
+  if (flat) {
+    return (
+      <div
+        className={`inline-flex flex-wrap gap-[1.5px] ${className}`}
+        role="img"
+        aria-label={`64-bit hash ${hash}`}
+      >
+        {bits.map((bit, idx) => cell(bit, idx, "rounded-[1px]"))}
+      </div>
+    );
+  }
+
   return (
     <div
       className={`inline-flex flex-wrap gap-[6px] ${className}`}
@@ -33,32 +76,9 @@ export default function BitGrid({
     >
       {Array.from({ length: 8 }).map((_, byteIdx) => (
         <div key={byteIdx} className="flex gap-[2px]">
-          {bits.slice(byteIdx * 8, byteIdx * 8 + 8).map((bit, i) => {
-            const idx = byteIdx * 8 + i;
-            const isDiff = diff?.[idx] === 1;
-            const on = bit === 1;
-            const bg = isDiff
-              ? "var(--color-diff)"
-              : on
-                ? color
-                : "transparent";
-            return (
-              <span
-                key={i}
-                style={{
-                  width: size,
-                  height: size,
-                  background: bg,
-                  borderColor: isDiff
-                    ? "var(--color-diff)"
-                    : on
-                      ? color
-                      : "var(--color-hairline)",
-                }}
-                className="rounded-[2px] border transition-colors duration-300"
-              />
-            );
-          })}
+          {bits
+            .slice(byteIdx * 8, byteIdx * 8 + 8)
+            .map((bit, i) => cell(bit, byteIdx * 8 + i, "rounded-[2px]"))}
         </div>
       ))}
     </div>

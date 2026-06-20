@@ -10,8 +10,8 @@ const tabs = [
 export default function Header() {
   return (
     <header className="sticky top-0 z-20 border-b border-[var(--color-hairline)] bg-[var(--color-paper)]/85 backdrop-blur-md">
-      <div className="mx-auto flex h-14 max-w-6xl items-center gap-6 px-5">
-        <NavLink to="/" className="flex items-center gap-2.5">
+      <div className="mx-auto flex h-14 max-w-6xl items-center gap-3 px-5 sm:gap-6">
+        <NavLink to="/" className="flex shrink-0 items-center gap-2.5">
           <span
             className="grid h-6 w-6 grid-cols-3 grid-rows-3 gap-[2px]"
             aria-hidden
@@ -33,14 +33,14 @@ export default function Header() {
           </span>
         </NavLink>
 
-        <nav className="flex items-center gap-1 text-[13.5px]">
+        <nav className="flex items-center gap-1 overflow-x-auto text-[13.5px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {tabs.map((t) => (
             <NavLink
               key={t.to}
               to={t.to}
               end={t.end}
               className={({ isActive }) =>
-                `rounded-md px-2.5 py-1.5 transition-colors ${
+                `shrink-0 rounded-md px-2.5 py-1.5 transition-colors ${
                   isActive
                     ? "bg-[var(--color-csh-soft)] text-[var(--color-csh)]"
                     : "text-[var(--color-ink-soft)] hover:text-[var(--color-ink)]"
@@ -52,7 +52,7 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="ml-auto flex items-center gap-4 text-[13px] text-[var(--color-ink-soft)]">
+        <div className="ml-auto hidden shrink-0 items-center gap-4 text-[13px] text-[var(--color-ink-soft)] sm:flex">
           <a
             href="https://github.com/JakubRH/conformational-soft-hash"
             target="_blank"

@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Home from "./pages/Home";
 import Stub from "./pages/Stub";
 import Browse from "./pages/Browse";
+import Compare from "./pages/Compare";
 
 export default function App() {
   return (
@@ -12,15 +13,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/browse" element={<Browse />} />
-          <Route
-            path="/compare"
-            element={
-              <Stub
-                title="Compare two hashes"
-                blurb="Pick any two conformers and read the Hamming distance off a side-by-side bit diff, with the differing bits ignited."
-              />
-            }
-          />
+          <Route path="/compare" element={<Compare />} />
           <Route
             path="/search"
             element={
